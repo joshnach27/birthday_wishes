@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💖</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, serif;
+    color: #704b70;
+    background: linear-gradient(
+        135deg,
+        #fff9f5,
+        #fde7ee,
+        #eae5ff
+    );
+    overflow-x: hidden;
+}
+
+/* Main birthday screen */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Soft background circles */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.7;
+}
+
+.orb1 {
+    width: 330px;
+    height: 330px;
+    background: #f7c8d9;
+    left: -120px;
+    top: -100px;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    background: #d8d0f5;
+    right: -170px;
+    bottom: -150px;
+}
+
+/* Main glass card */
+.card {
+    position: relative;
+    z-index: 2;
+    width: min(760px, 100%);
+    padding: clamp(28px, 6vw, 65px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid white;
+    border-radius: 32px;
+    box-shadow: 0 25px 80px #81567420;
+    backdrop-filter: blur(12px);
+}
+
+.kicker {
+    font: 600 11px Arial, sans-serif;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #a46180;
+}
+
+h1 {
+    font-size: clamp(45px, 9vw, 82px);
+    font-weight: normal;
+    line-height: 1;
+    color: #c2547f;
+    margin: 24px 0;
+    letter-spacing: -0.04em;
+}
+
+h1 em {
+    display: block;
+    font-size: 0.55em;
+    color: #805c88;
+    margin-top: 14px;
+}
+
+.intro {
+    font-size: clamp(17px, 2.5vw, 21px);
+    line-height: 1.8;
+    color: #795e73;
+    max-width: 570px;
+    margin: auto;
+}
+
+.name {
+    color: #b44775;
+    font-style: italic;
+    border-bottom: 1px solid #dca6bb;
+}
+
+/* Birthday cake */
+.cake-area {
+    width: 220px;
+    height: 185px;
+    margin: 26px auto 10px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cake-area:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+.plate {
+    position: absolute;
+    bottom: 18px;
+    left: 10px;
+    width: 200px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(#fff, #e5c6d5);
+}
+
+.cake {
+    position: absolute;
+    bottom: 30px;
+    left: 35px;
+    width: 150px;
+    height: 80px;
+    border-radius: 12px 12px 18px 18px;
+    background: linear-gradient(
+        #f4b9ce 0 22%,
+        #fff0e8 22% 37%,
+        #d986a7 37%
+    );
+    box-shadow: 0 9px #b96787;
+}
+
+.cake::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    width: 100%;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff0e8;
+    box-shadow: inset 0 -5px #f0b6cc;
+}
+
+.cake::after {
+    content: "";
+    position: absolute;
+    top: 26px;
+    width: 100%;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        #fff0e8 0 15px,
+        #efabc2 15px 30px
+    );
+}
+
+/* Candle and flame */
+.candle {
+    position: absolute;
+    z-index: 2;
+    left: 105px;
+    top: 24px;
+    width: 10px;
+    height: 49px;
+    border-radius: 5px;
+    background: repeating-linear-gradient(
+        135deg,
+        white 0 6px,
+        #d9a6dc 6px 12px
+    );
+}
+
+.flame {
+    position: absolute;
+    z-index: 3;
+    left: 101px;
+    top: 0;
+    width: 18px;
+    height: 27px;
+    border-radius: 60% 40% 60% 40%;
+    background: linear-gradient(#fff2a2, #ffad42);
+    box-shadow: 0 0 24px #ffca63;
+    animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+    to {
+        transform: rotate(-9deg) scale(0.88);
+        opacity: 0.8;
+    }
+}
+
+.hint {
+    font: 12px Arial, sans-serif;
+    color: #a56d8b;
+    margin-top: 8px;
+}
+
+/* Quotes */
+.quote {
+    max-width: 550px;
+    margin: 28px auto 0;
+    padding: 19px 22px;
+    background: #fff0f5d9;
+    border-left: 3px solid #d88ba8;
+    border-radius: 0 16px 16px 0;
+    font-size: 19px;
+    line-height: 1.65;
+    font-style: italic;
+}
+
+.quote small {
+    display: block;
+    font: 11px Arial, sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a56d8b;
+    margin-top: 10px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    margin-top: 27px;
+    padding: 15px 25px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d96b91, #a56da0);
+    color: white;
+    text-decoration: none;
+    font: 600 13px Arial, sans-serif;
+    cursor: pointer;
+}
+
+/* Balloons */
+.balloons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.balloon {
+    position: absolute;
+    width: 72px;
+    height: 92px;
+    border-radius: 50%;
+    opacity: 0.76;
+    animation: float 5s ease-in-out infinite;
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 31px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 12px solid currentColor;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    top: 91px;
+    left: 35px;
+    width: 1px;
+    height: 90px;
+    background: #bca1b1;
+}
+
+.b1 {
+    left: 7%;
+    top: 13%;
+    background: #ee9db8;
+    color: #ee9db8;
+}
+
+.b2 {
+    right: 8%;
+    top: 18%;
+    background: #b9a8e9;
+    color: #b9a8e9;
+    animation-delay: -2s;
+}
+
+.b3 {
+    left: 12%;
+    bottom: 13%;
+    background: #f2c66e;
+    color: #f2c66e;
+    animation-delay: -1s;
+}
+
+.b4 {
+    right: 11%;
+    bottom: 14%;
+    background: #a9d9c9;
+    color: #a9d9c9;
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    50% {
+        translate: 0 -18px;
+    }
+}
+
+/* Birthday wishes section */
+.wishes {
+    padding: 75px 18px;
+    text-align: center;
+}
+
+.wishes h2 {
+    font-size: clamp(32px, 6vw, 50px);
+    font-weight: normal;
+    color: #ad5279;
+    margin-bottom: 18px;
+}
+
+.message {
+    max-width: 760px;
+    margin: auto;
+    color: #795e73;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+    max-width: 900px;
+    margin: 35px auto;
+}
+
+.wish {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid white;
+    border-radius: 23px;
+    padding: 26px 20px;
+    box-shadow: 0 12px 32px #80567412;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.wish:hover {
+    transform: translateY(-5px);
+}
+
+.emoji {
+    font-size: 32px;
+}
+
+.wish p {
+    font-size: 17px;
+    line-height: 1.65;
+    margin-top: 12px;
+}
+
+.endline {
+    font-size: 25px;
+    font-style: italic;
+    color: #a64e78;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 12px 40px;
+    color: #a17b92;
+    font: 11px Arial, sans-serif;
+    letter-spacing: 0.12em;
+}
+
+/* Falling colorful confetti */
+.confetti {
+    position: fixed;
+    z-index: 99;
+    top: -18px;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translate3d(var(--drift), 110vh, 0)
+                   rotate(var(--spin));
+        opacity: 0.1;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 520px) {
+    .balloon {
+        width: 50px;
+        height: 66px;
+    }
+
+    .balloon::after {
+        top: 65px;
+        height: 55px;
+    }
+
+    .b1 { left: 1%; top: 4%; }
+    .b2 { right: 1%; top: 6%; }
+    .b3 { left: 1%; bottom: 4%; }
+    .b4 { right: 1%; bottom: 4%; }
+
+    .card {
+        border-radius: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Opening birthday screen -->
+<section class="hero" id="top">
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="balloons">
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+    </div>
+
+    <div class="card">
+
+        <div class="kicker">
+            A little celebration, made with love
+        </div>
+
+        <h1>
+            HAPPY BIRTHDAY
+            <em>to someone truly special</em>
+        </h1>
+
+        <p class="intro">
+            To my wonderful
+            <span class="name">favorite person</span>,
+            <br>
+            today is all about you and the happiness
+            you bring into this world.
+        </p>
+
+        <!-- Tap the cake to release confetti -->
+        <div class="cake-area"
+             role="button"
+             tabindex="0"
+             aria-label="Tap the cake for confetti">
+
+            <div class="flame"></div>
+            <div class="candle"></div>
+            <div class="cake"></div>
+            <div class="plate"></div>
+
+        </div>
+
+        <div class="hint">
+            ✧ Tap the cake for a little confetti magic ✧
+        </div>
+
+        <p class="intro" style="margin-top:22px">
+            May your day be filled with warm hugs,
+            sweet surprises, endless laughter, and
+            every little thing that makes your heart smile. 💗
+        </p>
+
+        <div class="quote">
+            “Count your life by smiles, not tears.
+            Count your age by friends, not years.”
+            <small>— A birthday wish</small>
+        </div>
+
+        <a class="btn" href="#wishes">
+            Open your birthday wishes ↓
+        </a>
+
+    </div>
+</section>
+
+<!-- Birthday wishes -->
+<section class="wishes" id="wishes">
+
+    <h2>A day as lovely as you ✨</h2>
+
+    <p class="message">
+        Some people make ordinary days feel special just by
+        being themselves. You are one of those people.
+        Thank you for your kindness, your laughter, and all
+        the beautiful memories. I hope this new chapter
+        brings you peace, courage, exciting adventures,
+        and more reasons to smile.
+    </p>
+
+    <div class="tiles">
+
+        <article class="wish" tabindex="0">
+            <div class="emoji">🌷</div>
+            <p>
+                May your heart always be surrounded
+                by love and kindness.
+            </p>
+        </article>
+
+        <article class="wish" tabindex="0">
+            <div class="emoji">🌟</div>
+            <p>
+                May your dreams grow bigger and your
+                beautiful plans come true.
+            </p>
+        </article>
+
+        <article class="wish" tabindex="0">
+            <div class="emoji">🎈</div>
+            <p>
+                May every day bring a little magic,
+                laughter, and unexpected joy.
+            </p>
+        </article>
+
+    </div>
+
+    <div class="quote">
+        “The more you praise and celebrate your life,
+        the more there is in life to celebrate.”
+        <small>— Oprah Winfrey</small>
+    </div>
+
+    <p class="endline">
+        Wishing you the happiest birthday, today and always. ♡
+    </p>
+
+    <a class="btn" href="#top">
+        Back to the celebration ↑
+    </a>
+
+</section>
+
+<footer>
+    MADE WITH ♡ JUST FOR YOU · HAVE THE MOST BEAUTIFUL BIRTHDAY
+</footer>
+
+<script>
+// Create colorful falling confetti
+function burst(x, y) {
+
+    const colors = [
+        "#f06f9b",
+        "#f7c85f",
+        "#9b8be3",
+        "#79cdb5",
+        "#ff9b72",
+        "#d88ac4",
+        "#ffffff"
+    ];
+
+    for (let i = 0; i < 90; i++) {
+
+        const piece = document.createElement("i");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+            (x + Math.random() * 100 - 50) + "px";
+
+        piece.style.top =
+            (y - 20 - Math.random() * 90) + "px";
+
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.width =
+            (5 + Math.random() * 8) + "px";
+
+        piece.style.height =
+            (8 + Math.random() * 12) + "px";
+
+        piece.style.borderRadius =
+            Math.random() > 0.5 ? "50%" : "2px";
+
+        piece.style.setProperty(
+            "--drift",
+            (Math.random() * 320 - 160) + "px"
+        );
+
+        piece.style.setProperty(
+            "--spin",
+            (Math.random() * 1000 - 500) + "deg"
+        );
+
+        piece.style.animationDuration =
+            (2.5 + Math.random() * 2) + "s";
+
+        document.body.appendChild(piece);
+
+        // Remove confetti after the animation
+        piece.addEventListener("animationend", () => {
+            piece.remove();
+        }, { once: true });
+    }
+}
+
+// Make an element release confetti on click or keyboard
+function attachConfetti(element) {
+
+    function pop() {
+        const rect = element.getBoundingClientRect();
+
+        burst(
+            rect.left + rect.width / 2,
+            rect.top + rect.height / 2
+        );
+    }
+
+    element.addEventListener("click", pop);
+
+    element.addEventListener("keydown", event => {
+
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            pop();
+        }
+
+    });
+}
+
+// Confetti when touching the cake
+attachConfetti(document.querySelector(".cake-area"));
+
+// Confetti when touching any birthday wish
+document.querySelectorAll(".wish").forEach(attachConfetti);
+</script>
+
+</body>
+</html>
+
